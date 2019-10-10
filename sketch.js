@@ -6,17 +6,17 @@ function setup() {
 	createCanvas(windowWidth, windowHeight)
 	background(0)
 	// A random color
-	color1 = rgb2lab([random(0, 255), random(0, 255), random(0,255)])
+	color1 = rgb2lab([random(0, 255), random(0, 255), random(0, 255)])
 	// color2 will be changed to a color that is similar to color1 if it isn't close enough to start with
-	color2 = rgb2lab([random(0, 255), random(0, 255), random(0,255)])
+	color2 = rgb2lab([random(0, 255), random(0, 255), random(0, 255)])
 	// Average of color1 and color2
 	color3 = average(color1, color2)
 	// How close the two lab values have to be before displaying them
-	threshold = 20
+	threshold = 1
 }
 
 function draw() {
-	tries= 0
+	tries = 0
 	while(true){
 		if(deltaE(color1, color2) < threshold){
 			if(!found){
@@ -30,35 +30,37 @@ function draw() {
 		}else{
 			tries += 1
 			rejectedColors.push([lab2rgb(color2), deltaE(color1, color2)])
-			color2 = rgb2lab([random(0, 255), random(0, 255), random(0,255)])
-			if(tries> 3000){
-				tries= 0
-				print("took more than 3000 tries, changing color1")
-				color1 = rgb2lab([random(0, 255), random(0, 255), random(0,255)])
+			color2 = rgb2lab([random(0, 255), random(0, 255), random(0, 255)])
+			if(tries > 3000){
+				tries = 0
+				print("took more than 3000 tries , changing color1")
+				color1 = rgb2lab([random(0, 255), random(0, 255), random(0, 255)])
 			}
 		}
-	//print(i)
 	}
-	if(tries> 0){
+	if(tries > 0){
 		print("It took " + tries + " tries before finding a matching color")
 	}
 	color3 = average(color1, color2)
 	
 	fill(lab2rgb(color1))
-	rect(0,0,windowWidth,windowHeight)
+	rect(0, 0, windowWidth, windowHeight)
 	
 	fill(lab2rgb(color2))
-	rect(windowWidth/2,0,windowWidth,windowHeight)
+	rect(windowWidth/2, 0, windowWidth, windowHeight)
 	
 	fill(color3)
 	rect(windowWidth/2 - 40, windowHeight/2 - 40, 80, 80)
 	
+	push()
+	noStroke()
 	for(var i = rejectedColors.length; i >= 0; i--){
 		if(rejectedColors[i]){
 			fill(rejectedColors[i][0])
-			rect(i * windowWidth/(2*rejectedColors.length) + windowWidth/2, 0, width/(2*rejectedColors.length), 30)	
+			rect(i * windowWidth/(2*rejectedColors.length) + windowWidth/2 + 2, 2, width/(2*rejectedColors.length), 30)	
 		}
 	}
+	pop()
 }
 
 function mouseClicked() {
