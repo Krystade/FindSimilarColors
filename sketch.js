@@ -1,6 +1,9 @@
-let rejectedColors = []
 // Used to prevent deltaE being printed more than once
 let found = false
+// Keep track of how many colors were tried before finding one that matches
+let tries = 0
+// List of all colors and their DeltaE values that were not a match
+let rejectedColors = []
 
 function setup() {
 	createCanvas(windowWidth, windowHeight)
@@ -42,16 +45,17 @@ function draw() {
 		print("It took " + tries + " tries before finding a matching color")
 	}
 	color3 = average(color1, color2)
-	
+	//Display the left side color
 	fill(lab2rgb(color1))
 	rect(0, 0, windowWidth, windowHeight)
-	
+	// Display the right side color
 	fill(lab2rgb(color2))
 	rect(windowWidth/2, 0, windowWidth, windowHeight)
-	
+	// Display the average of the two colors in the center
 	fill(color3)
 	rect(windowWidth/2 - 40, windowHeight/2 - 40, 80, 80)
 	
+	// Display all the rejected colors at the top of the right side of the screen
 	push()
 	noStroke()
 	for(var i = rejectedColors.length; i >= 0; i--){
@@ -64,8 +68,10 @@ function draw() {
 }
 
 function mouseClicked() {
+	// Reset found and rejectedColors when a new color1 is picked
 	found = false
 	rejectedColors = []
+	// Randomize colors 1 and 2 on mouse click
 	color1 = rgb2lab([random(0, 255), random(0, 255), random(0,255)])
 	color2 = rgb2lab([random(0, 255), random(0, 255), random(0,255)])
 	color3 = average(color1, color2)
