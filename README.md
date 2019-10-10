@@ -1,5 +1,5 @@
 # FindSimilarColors
-Uses CIE-L*ab and finds a color that is at most a certain distance away before displaying them side-by-side
+Uses CIE L*a*b* (CIELAB) and finds a color that is at most a certain distance away before displaying them side-by-side
 
 **To Use:**
 - Set threshold to desired limit in sketch.js
