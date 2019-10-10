@@ -12,7 +12,7 @@ function setup() {
 	// Average of color1 and color2
 	color3 = average(color1, color2)
 	// How close the two lab values have to be before displaying them
-	threshold = 1
+	threshold = 30
 }
 
 function draw() {
