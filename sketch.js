@@ -15,7 +15,7 @@ function setup() {
 	// Average of color1 and color2
 	color3 = average(color1, color2)
 	// How close the two lab values have to be before displaying them
-	threshold = 30
+	threshold = 10
 }
 
 function draw() {
@@ -65,6 +65,16 @@ function draw() {
 		}
 	}
 	pop()
+}
+
+function keyPressed() {//keyCode 13 is enter
+	if (keyCode == 13){
+		// Reset found and rejectedColors when a new color1 is picked
+		found = false
+		rejectedColors = []
+		// Randomize color 2 to start looking for a new match of color 1
+		color2 = rgb2lab([random(0, 255), random(0, 255), random(0,255)])
+		}
 }
 
 function mouseClicked() {
