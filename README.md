@@ -9,3 +9,5 @@ Simply download all the files of this repository and open the index.html file in
 - Open index.html to run the script
 - Left click to change the left panel to a random new color and a similar color will be displayed next to it
 - At the top of the right side of the screen is all of the colors checked before finding one that is similar.
+
+![example of program](/example.png)
