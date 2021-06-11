@@ -1,5 +1,5 @@
 # FindSimilarColors
-Uses CIE L*a*b* (CIELAB) and finds a color that is at most a certain distance away before displaying them side-by-side
+Uses CIE L\*a\*b\* (CIELAB) and finds a color that is at most a certain distance away from a different randomly chosen color. Both colors will then be displayed side-by-side with their rgb average in the center.
 
 # To Run
 Simply download all the files of this repository and open the index.html file in your web browser. (Chrome, Firefox, Edge)
